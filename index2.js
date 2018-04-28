@@ -25,6 +25,20 @@ var req = http.request(opt, function(res) {
     });  
 });  
   
+
+
+// req.on('response', function(res) {
+//     // console.log(res.finished);
+//     // res.on('end', function(s) {
+//     //     console.log(s);
+//     // })
+//     res.on('end')
+//     console.log(res);
+//     // fs.writeFile('1.txt', JSON.stringify(res), err=> {
+//     //     console.log(err);
+//     // });
+// })
+
 req.on('error', function(e) {  
     console.log("Got error: " + e.message);  
 });  
