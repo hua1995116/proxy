@@ -1,16 +1,21 @@
 # porxy
 http-porxy 源码解析以及实现
+
 proxy-01   简版proxy
+
 proxy-02   封装proxy
+
 proxy-03   中间件proxy，支持express
 
-这段时间进行了前后端的分离,调试中遇到一个问题,跨域了。
+这段时间进行了前后端的分离,调试中遇到一个问题,跨域。
 
 
 现阶段接口跨域调试的3中方式。
 
 1.jsonp
+
 2.cros
+
 3.代理
 
 代理（英语：Proxy）也称网络代理，是一种特殊的网络服务，允许一个网络终端（一般为客户端）通过这个服务与另一个网络终端（一般为服务器）进行非直接的连接。一些网关、路由器等网络设备具备网络代理功能。一般认为代理服务有利于保障网络终端的隐私或安全，防止攻击。
@@ -30,18 +35,18 @@ proxy-03   中间件proxy，支持express
 
 # 图解 
 
-我   ->   苹果
 
 
 正向代理
 ![](https://img-blog.csdn.net/20180501143538251)
-我    代理      采摘      苹果
+
+![](http://hyf-pic-1251965041.cossh.myqcloud.com/R%5D8CJEDHR_S%5D9_Y%607LDVTXG.png)
 
 
 反向代理
 ![](https://img-blog.csdn.net/20180501143553266)
-我    代理      采摘苹果， 买来的苹果，囤积的苹果。
 
+![](http://hyf-pic-1251965041.cossh.myqcloud.com/~%29PTQ%60%60R4CQ_XW%60258TGB%7BK.png)
 # 项目中的代理
 
 http-proxy-middleware
@@ -201,7 +206,6 @@ web属性createRightProxy   支持http，https，webscoket
         XHeaders
         stream  核心方法  
           处理 http.request  核心模块
-
           pipe  response
 
 前端后分离 -> 调试 -> 代理 -> 正向，反向 -> 实现一个反向http代理 -> http-proxy-middleware -> http-proxy-node（websocket，https，http）http实现原理 -> 拓展
