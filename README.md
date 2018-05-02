@@ -4,6 +4,8 @@ proxy-01   简版proxy
 proxy-02   封装proxy
 proxy-03   中间件proxy，支持express
 
+这段时间进行了前后端的分离,调试中遇到一个问题,跨域了。
+
 
 现阶段接口跨域调试的3中方式。
 
@@ -184,15 +186,13 @@ require('util').inherits(ProxyServer, EE3);
 
 ProxyServer.createServer创建使用
 
-ProxyServer.createServer 等价c reateProxyServer
+ProxyServer.createServer 等价createProxyServer
 
 createProxyServer 返回一个ProxyServer实例
 
 ProxyServer 
 
 ProxyServer 拥有web属性
-
-
 
 web属性createRightProxy   支持http，https，webscoket
 
@@ -204,4 +204,4 @@ web属性createRightProxy   支持http，https，webscoket
 
           pipe  response
 
-
+前端后分离 -> 调试 -> 代理 -> 正向，反向 -> 实现一个反向http代理 -> http-proxy-middleware -> http-proxy-node（websocket，https，http）http实现原理 -> 拓展
