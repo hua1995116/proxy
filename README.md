@@ -1,5 +1,5 @@
-# porxy
-http-porxy 源码解析以及实现
+# proxy
+http-proxy 源码解析以及实现
 
 proxy-01   简版proxy
 
