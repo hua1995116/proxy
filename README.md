@@ -38,12 +38,14 @@ proxy-03   中间件proxy，支持express
 
 
 正向代理
+
 ![](https://img-blog.csdn.net/20180501143538251)
 
 ![](http://hyf-pic-1251965041.cossh.myqcloud.com/R%5D8CJEDHR_S%5D9_Y%607LDVTXG.png)
 
 
 反向代理
+
 ![](https://img-blog.csdn.net/20180501143553266)
 
 ![](http://hyf-pic-1251965041.cossh.myqcloud.com/~%29PTQ%60%60R4CQ_XW%60258TGB%7BK.png)
@@ -208,4 +210,58 @@ web属性createRightProxy   支持http，https，webscoket
           处理 http.request  核心模块
           pipe  response
 
-前端后分离 -> 调试 -> 代理 -> 正向，反向 -> 实现一个反向http代理 -> http-proxy-middleware -> http-proxy-node（websocket，https，http）http实现原理 -> 拓展
+看图
+
+![](http://hyf-pic-1251965041.cossh.myqcloud.com/ProxyServer.png)
+
+
+自己实现
+
+![](http://hyf-pic-1251965041.cossh.myqcloud.com/liuchengtu.png)
+
+api.js
+
+```
+const http = require('http');
+
+http.createServer(function (request, response) {
+    response.writeHead(200, {
+        'Content-Type': 'text/plain'
+    });
+    response.write(JSON.stringify({huayifeng: 1}));
+    response.end();
+}).listen(8081, '127.0.0.1');
+```
+
+index.js
+```
+const http = require('http');
+
+http.createServer(function (req, res) {
+    proxy(req, res);
+}).listen(8080, '127.0.0.1');
+
+function proxy(req, res) {
+    const options = {
+        hostname: '127.0.0.1',
+        port: 8081,
+        path: '/',
+        method: 'GET',
+    };
+    
+    const proxyReq = http.request(options);  
+
+    proxyReq.on('error', function(e) {
+        console.log('problem with request: ' + e.message);
+    });
+     
+    proxyReq.on('response', function(proxyRes) {
+        proxyRes.on('end', function () {
+            console.log('end');
+        });
+        proxyRes.pipe(res);
+    })
+    
+    proxyReq.end();
+}
+```
